@@ -136,75 +136,83 @@ class _RiverCrossingState extends State<RiverCrossing> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('River Crossing Puzzle')),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(message, style: TextStyle(fontSize: 18)),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/river_background.jpg'), // River background
+            fit: BoxFit.cover,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Riverbank(
-                side: 'left',
-                lion: lionOnLeft,
-                goat: goatOnLeft,
-                grass: grassOnLeft,
-                man: manOnLeft,
-              ),
-              Boat(boatOnLeft, move),
-              Riverbank(
-                side: 'right',
-                lion: !lionOnLeft,
-                goat: !goatOnLeft,
-                grass: !grassOnLeft,
-                man: !manOnLeft,
-              ),
-            ],
-          ),
-          SizedBox(height: 20),
-          Text("Who will you move?"),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ElevatedButton(
-                onPressed: gameFinished ? null : () => move('Lion'), // Disable if game is finished
-                child: Text('Move Lion'),
-              ),
-              ElevatedButton(
-                onPressed: gameFinished ? null : () => move('Goat'), // Disable if game is finished
-                child: Text('Move Goat'),
-              ),
-              ElevatedButton(
-                onPressed: gameFinished ? null : () => move('Grass'), // Disable if game is finished
-                child: Text('Move Grass'),
-              ),
-            ],
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: restartGame,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(message, style: TextStyle(fontSize: 18, color: Colors.white)),
             ),
-            child: Text('Restart Game'),
-          ),
-          SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ElevatedButton(
-                onPressed: _showGameRules,
-                child: Text('Game Rules'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Riverbank(
+                  side: 'left',
+                  lion: lionOnLeft,
+                  goat: goatOnLeft,
+                  grass: grassOnLeft,
+                  man: manOnLeft,
+                ),
+                Boat(boatOnLeft, move),
+                Riverbank(
+                  side: 'right',
+                  lion: !lionOnLeft,
+                  goat: !goatOnLeft,
+                  grass: !grassOnLeft,
+                  man: !manOnLeft,
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Text("Who will you move?", style: TextStyle(color: Colors.white)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                  onPressed: gameFinished ? null : () => move('Lion'), // Disable if game is finished
+                  child: Text('Move Lion'),
+                ),
+                ElevatedButton(
+                  onPressed: gameFinished ? null : () => move('Goat'), // Disable if game is finished
+                  child: Text('Move Goat'),
+                ),
+                ElevatedButton(
+                  onPressed: gameFinished ? null : () => move('Grass'), // Disable if game is finished
+                  child: Text('Move Grass'),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: restartGame,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
               ),
-              ElevatedButton(
-                onPressed: _showHint,
-                child: Text('Hint'),
-              ),
-            ],
-          ),
-        ],
+              child: Text('Restart Game'),
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                  onPressed: _showGameRules,
+                  child: Text('Game Rules'),
+                ),
+                ElevatedButton(
+                  onPressed: _showHint,
+                  child: Text('Hint'),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

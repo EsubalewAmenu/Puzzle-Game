@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 
 class Boat extends StatelessWidget {
-  final bool boatOnLeft;
-  final Function(String) move;
+  final bool onLeft;
+  final Function moveCallback;
 
-  Boat(this.boatOnLeft, this.move);
+  Boat(this.onLeft, this.moveCallback);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(Icons.directions_boat, size: 100, color: boatOnLeft ? Colors.blue : Colors.grey),
-        ElevatedButton(
-          onPressed: () => move('Man'),
-          child: Text('Move Boat'),
-        ),
+        Image.asset('assets/images/boat.png', width: 50, height: 50),
+        Text(onLeft ? 'On Left Bank' : 'On Right Bank', style: TextStyle(color: Colors.white)),
       ],
     );
   }
