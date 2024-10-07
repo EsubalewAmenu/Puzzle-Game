@@ -32,6 +32,9 @@ class _RiverCrossingState extends State<RiverCrossing> {
           case 'Grass':
             if (grassOnLeft == manOnLeft) grassOnLeft = !grassOnLeft;
             break;
+          case 'Man':
+          // This will be handled in the Riverbank for direct tapping
+            break;
         }
         boatOnLeft = !boatOnLeft;
         manOnLeft = !manOnLeft;
@@ -135,7 +138,6 @@ class _RiverCrossingState extends State<RiverCrossing> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('River Crossing Puzzle')),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -159,6 +161,7 @@ class _RiverCrossingState extends State<RiverCrossing> {
                   goat: goatOnLeft,
                   grass: grassOnLeft,
                   man: manOnLeft,
+                  onItemTapped: move,
                 ),
                 Boat(boatOnLeft, move),
                 Riverbank(
@@ -167,25 +170,7 @@ class _RiverCrossingState extends State<RiverCrossing> {
                   goat: !goatOnLeft,
                   grass: !grassOnLeft,
                   man: !manOnLeft,
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
-            Text("Who will you move?", style: TextStyle(color: Colors.white)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                  onPressed: gameFinished ? null : () => move('Lion'), // Disable if game is finished
-                  child: Text('Move Lion'),
-                ),
-                ElevatedButton(
-                  onPressed: gameFinished ? null : () => move('Goat'), // Disable if game is finished
-                  child: Text('Move Goat'),
-                ),
-                ElevatedButton(
-                  onPressed: gameFinished ? null : () => move('Grass'), // Disable if game is finished
-                  child: Text('Move Grass'),
+                  onItemTapped: move,
                 ),
               ],
             ),

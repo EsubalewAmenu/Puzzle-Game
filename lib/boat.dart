@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 
 class Boat extends StatelessWidget {
-  final bool onLeft;
-  final Function moveCallback;
+  final bool boatOnLeft;
+  final Function(String) onItemTapped;
 
-  Boat(this.onLeft, this.moveCallback);
+  Boat(this.boatOnLeft, this.onItemTapped);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset('assets/images/boat.png', width: 50, height: 50),
-        Text(onLeft ? 'On Left Bank' : 'On Right Bank', style: TextStyle(color: Colors.white)),
-      ],
+    return GestureDetector(
+      onTap: () => onItemTapped('Boat'), // Optionally handle boat taps
+      child: Container(
+        padding: EdgeInsets.all(8.0),
+        child: Image.asset(
+          'assets/images/boat.png', // Replace with your boat image asset
+          width: 100,
+          alignment: boatOnLeft ? Alignment.centerLeft : Alignment.centerRight,
+        ),
+      ),
     );
   }
 }
