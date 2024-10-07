@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'riverbank.dart';
 import 'boat.dart';
+import 'restart_button.dart';
+import 'game_rules_button.dart';
+import 'hint_button.dart';
 
 class RiverCrossing extends StatefulWidget {
   @override
@@ -31,9 +34,6 @@ class _RiverCrossingState extends State<RiverCrossing> {
             break;
           case 'Grass':
             if (grassOnLeft == manOnLeft) grassOnLeft = !grassOnLeft;
-            break;
-          case 'Man':
-          // This will be handled in the Riverbank for direct tapping
             break;
         }
         boatOnLeft = !boatOnLeft;
@@ -76,65 +76,6 @@ class _RiverCrossingState extends State<RiverCrossing> {
     });
   }
 
-  // Show Game Rules
-  void _showGameRules() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Game Rules'),
-          content: Text(
-            '1. The boat can carry only the man and one item at a time.\n'
-                '2. The lion will eat the goat if left alone together.\n'
-                '3. The goat will eat the grass if left alone together.\n'
-                '4. The man can prevent any eating if present.\n'
-                'Objective: Safely get the lion, goat, and grass across the river.',
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Close'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  // Show Hint
-  void _showHint() {
-    String hint;
-    if (lionOnLeft && goatOnLeft && grassOnLeft) {
-      hint = 'Take the goat across first.';
-    } else if (!goatOnLeft && lionOnLeft && grassOnLeft) {
-      hint = 'Go back alone and take the lion next.';
-    } else if (!lionOnLeft && goatOnLeft && grassOnLeft) {
-      hint = 'Take the goat back, then take the grass across.';
-    } else {
-      hint = 'Try different combinations, but avoid leaving the lion with the goat or the goat with the grass.';
-    }
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Hint'),
-          content: Text(hint),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Close'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -175,24 +116,16 @@ class _RiverCrossingState extends State<RiverCrossing> {
               ],
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: restartGame,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-              ),
-              child: Text('Restart Game'),
-            ),
+            RestartButton(onRestart: restartGame),
             SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                ElevatedButton(
-                  onPressed: _showGameRules,
-                  child: Text('Game Rules'),
-                ),
-                ElevatedButton(
-                  onPressed: _showHint,
-                  child: Text('Hint'),
+                GameRulesButton(),
+                HintButton(
+                  lionOnLeft: lionOnLeft,
+                  goatOnLeft: goatOnLeft,
+                  grassOnLeft: grassOnLeft,
                 ),
               ],
             ),
