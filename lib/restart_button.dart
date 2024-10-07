@@ -12,7 +12,7 @@ class RestartButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.red,
       ),
-      child: Text('Restart Game'),
+      child: Text('Restart'),
     );
   }
 }

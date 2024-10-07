@@ -33,7 +33,7 @@ class GameRulesButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () => _showGameRules(context),
-      child: Text('Game Rules'),
+      child: Text('Rules'),
     );
   }
 }
