@@ -30,17 +30,17 @@ class Riverbank extends StatelessWidget {
         if (lion)
           GestureDetector(
             onTap: () => onItemTapped('Lion'),
-            child: Image.asset('assets/images/lion.png', width: 50),
+            child: Image.asset('assets/images/lion.gif', width: 50),
           ),
         if (goat)
           GestureDetector(
             onTap: () => onItemTapped('Goat'),
-            child: Image.asset('assets/images/goat.png', width: 50),
+            child: Image.asset('assets/images/goat.gif', width: 50),
           ),
         if (grass)
           GestureDetector(
             onTap: () => onItemTapped('Grass'),
-            child: Image.asset('assets/images/grass.png', width: 50),
+            child: Image.asset('assets/images/grass.gif', width: 50),
           ),
         Text(side, style: TextStyle(color: Colors.white)),
       ],

@@ -13,7 +13,7 @@ class Boat extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(8.0),
         child: Image.asset(
-          'assets/images/boat.png', // Replace with your boat image asset
+          'assets/images/boat.gif', // Replace with your boat image asset
           width: 100,
           alignment: boatOnLeft ? Alignment.centerLeft : Alignment.centerRight,
         ),
