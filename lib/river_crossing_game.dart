@@ -86,48 +86,60 @@ class _RiverCrossingState extends State<RiverCrossing> {
             fit: BoxFit.cover,
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(message, style: TextStyle(fontSize: 18, color: Colors.white)),
+            // Left side with Riverbanks and Boat
+            Expanded(
+              flex: 2,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(message, style: TextStyle(fontSize: 18, color: Colors.white)),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Riverbank(
+                        side: 'left',
+                        lion: lionOnLeft,
+                        goat: goatOnLeft,
+                        grass: grassOnLeft,
+                        man: manOnLeft,
+                        onItemTapped: move,
+                      ),
+                      Boat(boatOnLeft, move),
+                      Riverbank(
+                        side: 'right',
+                        lion: !lionOnLeft,
+                        goat: !goatOnLeft,
+                        grass: !grassOnLeft,
+                        man: !manOnLeft,
+                        onItemTapped: move,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Riverbank(
-                  side: 'left',
-                  lion: lionOnLeft,
-                  goat: goatOnLeft,
-                  grass: grassOnLeft,
-                  man: manOnLeft,
-                  onItemTapped: move,
-                ),
-                Boat(boatOnLeft, move),
-                Riverbank(
-                  side: 'right',
-                  lion: !lionOnLeft,
-                  goat: !goatOnLeft,
-                  grass: !grassOnLeft,
-                  man: !manOnLeft,
-                  onItemTapped: move,
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
-            RestartButton(onRestart: restartGame),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                GameRulesButton(),
-                HintButton(
-                  lionOnLeft: lionOnLeft,
-                  goatOnLeft: goatOnLeft,
-                  grassOnLeft: grassOnLeft,
-                ),
-              ],
+
+            // Right side with controls
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RestartButton(onRestart: restartGame),
+                  SizedBox(height: 20),
+                  GameRulesButton(),
+                  SizedBox(height: 20),
+                  HintButton(
+                    lionOnLeft: lionOnLeft,
+                    goatOnLeft: goatOnLeft,
+                    grassOnLeft: grassOnLeft,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
