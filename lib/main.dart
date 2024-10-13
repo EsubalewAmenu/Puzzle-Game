@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:riddle2/river_crossing_game.dart';
+import 'home_page.dart'; // Import HomePage
 
 void main() => runApp(RiverCrossingGame());
 
@@ -11,7 +11,7 @@ class RiverCrossingGame extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: RiverCrossing(),
+      home: HomePage(), // Load HomePage initially
     );
   }
 }
